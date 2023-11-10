@@ -5,27 +5,22 @@ import HomePage from './components/HomePage';
 import CameraPage from './components/CameraPage';
 import MenuPage from './components/MenuPage';
 import LogIn from './components/LogIn';
+import CreateAccount from './components/CreateAccount.js';
 import './App.css';
 import NavBar from './components/navbar.jsx';
+
 
 function App() {
   return (
     <Router>
     <div className="App">
       <header className="App-header">
-        {/* <nav>
-            <ul>
-              <li><Link to="/home">Home</Link></li>
-              <li><Link to="/cameras">Camera</Link></li>
-              <li><Link to="/menu">Menu</Link></li> 
-              <li><Link to="/signIn">Sign In</Link></li>
-            </ul>
-        </nav> */}
         <Routes>
           <Route path="/home" element={<HomePage />} />
           <Route path="/camera" element={<CameraPage />} />
           <Route path="/menu" element={<MenuPage />} />
           <Route path="/signIn" element={<LogIn/>} />
+          <Route path="/createAccount" element={<CreateAccount/>} />
         </Routes> 
       <p>
       </p>

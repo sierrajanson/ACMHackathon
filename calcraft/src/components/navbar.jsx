@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,8 +14,9 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
+import LogoCalCraft from './LogoCalCraft.png';
 
-const pages = [ 'camera', 'menu'];
+const pages = ['camera', 'menu'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navbar() {
@@ -25,6 +27,7 @@ function Navbar() {
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
+    
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
@@ -41,13 +44,14 @@ function Navbar() {
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                <img src={LogoCalCraft} style={{ maxWidth: '100x', maxHeight: '100px' }}sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                     <Typography
                         variant="h6"
                         noWrap
                         component="a"
                         href="/home"
                         sx={{
+                            padding: '8px 16px',
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
                             fontFamily: 'monospace',
@@ -57,7 +61,7 @@ function Navbar() {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        HOME
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -97,8 +101,9 @@ function Navbar() {
                         </Menu>
                     </Box>
                     
+                   
                     
-                    <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+                    <img src={LogoCalCraft} style={{ maxWidth: '0px', maxHeight: '0px' }}sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                     <Typography
                         variant="h5"
                         noWrap
@@ -115,13 +120,20 @@ function Navbar() {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        HOME
                     </Typography>
+
+                    
+
+                    {/* space in the middle of the page*/}
+
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
+                        {pages.map((page, index) => (
                             <Button
-                                key={page}
-                                
+                                key={index}
+                                component={Link}
+                                to={`/${page}`}
+                                color="inherit"
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
                                 {page}
@@ -129,6 +141,8 @@ function Navbar() {
                         ))}
                     </Box>
 
+                    
+                                
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -159,6 +173,8 @@ function Navbar() {
                         </Menu>
                     </Box>
 
+                    
+                    
                 </Toolbar>
             </Container>
         </AppBar>

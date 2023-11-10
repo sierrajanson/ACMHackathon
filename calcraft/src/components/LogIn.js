@@ -1,10 +1,8 @@
-// src/components/Login.js
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth, googleProvider } from '../firebase';
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-// ... (other imports and code)
 
 
 const Login = () => {
@@ -39,19 +37,13 @@ const Login = () => {
     try {
       await signInWithEmailAndPassword(authInstance, email, password);
       navigate('/home');
-      // The redirection will be handled in the onAuthStateChanged listener
     } catch (error) {
       console.error("Error signing in with email/password:", error);
     }
   };
 
   const handleCreateAccount = async () => {
-    try {
-      await createUserWithEmailAndPassword(authInstance, email, password);
-      // No need to setLoggedIn(true) here because onAuthStateChanged will handle it
-    } catch (error) {
-      console.error("Error creating account with email/password:", error);
-    }
+    navigate('/createAccount');
   };
 
   const handleSignOut = async () => {
@@ -70,7 +62,6 @@ const Login = () => {
       const user = result.user;
       console.log("User signed in with Google:", user);
       navigate('/home');
-      // The redirection will be handled in the onAuthStateChanged listener
     } catch (error) {
       console.error("Error signing in with Google:", error);
     }

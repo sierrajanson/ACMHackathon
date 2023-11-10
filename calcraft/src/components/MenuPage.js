@@ -4,6 +4,10 @@ const MenuPage = () => {
   let coffee_names = ["rice","chicken","samosas","tortillas","cookies","pizza","burger","fries","cookies","pizza","burger","fries"];
   let carbs_array = [];
   let coffee_array = [];
+  const cards = [];
+  let carb_total = 5;
+  let selected = [];
+
   for (let i = 0; i < coffee_names.length; i++){ // creating objects dynamically
     coffee_array[i] = {
       id: i,
@@ -16,26 +20,39 @@ const MenuPage = () => {
   const LinkCard = (props) => {
     return (
       <div className='linkCard' id={props.id}>
-        <a href={props.link} target="_self" rel="noopener noreferrer" style={linkCardStyles}>
-          <h3 className="linkCardHeader">{props.title}</h3>
-          <p className="linkCardBody">{props.description}</p>
+        <a style={linkCardStyles}>
+          <h3 onClick={myfunction(props)} className="linkCardHeader">{props.title}</h3>
+          <p className="linkCardBody">{props.carbs} Carbs</p>
         </a>
       </div>  
     );
   }
-  const cards = [];
-  // plsWork = () => {
-  //   console.log('hello?');
-  // }
+    const myfunction = (props) => {
+    return function() {
+      if (!(selected.includes(props.title))){
+        selected.push(props.title);
+        carb_total += props.carbs
+        console.log(props.title, props.id);
+        console.log(carb_total);
+        window.value = carb_total;
+      }
+      else {
+        selected.splice(selected.indexOf(props.title));
+        carb_total -= props.carbs;
+        console.log(carb_total);
+        window.value = carb_total;
+      }
+    }
+  };
   for (let i = 0; i < coffee_array.length; i++){
     cards.push(<LinkCard 
       className={"linkCard"}
-      key={i}
+      id={i}
       title={coffee_array[i].name}
-      description={coffee_array[i].carbs + " Carbs"}
+      carbs={coffee_array[i].carbs}
       height={20}
       width={20}
-      onClick = {(event) => console.log('wheewhoo')}
+      onClick = {myfunction}
     />);
   }
   console.log(cards);
@@ -57,14 +74,15 @@ const MenuPage = () => {
       </div>
     );
   }
-  function myfunction(){console.log('hi')}
+  
   return (
     <div id="main">
+
       <h1>Welcome to the Menu Page!</h1>
       {/* Add your home page content here */}
       <div id="main">
         <div id="main_food" class="grid-container"> 
-          <div id="temp" onClick="myfunction()">
+          <div id="temp">
             <LinkCardContainer
               className= 'linkCardContainer'
               gridWidth={3}
@@ -72,8 +90,9 @@ const MenuPage = () => {
             />
           </div>
         </div>
-        <div id="total_carbs" class="generic-text"></div>
-        <div id="subtotal"></div>
+        <div id="total_carbs"class="linkCard2">
+          Check console tab for total carb value. 
+        </div>
       </div>
     </div>
   );
