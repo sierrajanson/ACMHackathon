@@ -11,3 +11,47 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.linkCard {
+  display: flex;
+  background-color: #333;
+  justify-content: space-between;
+  border-radius: 0.5rem;
+  color: var(--text_color_1);
+  padding: 2rem;
+  width: 100%;
+  overflow: none;
+}
+
+.linkCard#comment {
+  border-style: double;
+  background-image: none;
+  background-color: var(--background_2);
+  border-color: var(--vicious_stance);
+}
+
+.linkCardHeader {
+  font-weight: bold;
+  background-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+/* .linkCard i {
+  color: white;
+  cursor: pointer;
+  z-index: 2;
+  padding: 0.5rem;
+  height: 24px;
+} */
+
+.linkCardContainer {
+  overflow: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  justify-items: center;
+  text-align: center;
+}
