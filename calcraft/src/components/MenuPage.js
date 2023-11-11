@@ -1,5 +1,5 @@
-import React from 'react';
-import '../index.css'
+import React, {useState} from 'react';
+import '../index.css';
 
 
 //useState
@@ -11,6 +11,8 @@ const MenuPage = () => {
   let carb_total = 5;
   let selected = [];
 
+  const [carb,setCarb] = useState(0);
+  
   for (let i = 0; i < coffee_names.length; i++){ // creating objects dynamically
     coffee_array[i] = {
       id: i,
@@ -40,6 +42,8 @@ const MenuPage = () => {
         selected.push(props.title);
         carb_total += props.carbs;
         saver = saverfunc(carb_total);
+        {setCarb(carb+1)};
+        console.log(carb);
         console.log(props.title, props.id);
         console.log(carb_total);
         console.log("Insulin units to take is: "+ (carb_total/15).toFixed(2) + " if insulin to carbohydrate ratio is 15.")
@@ -102,7 +106,7 @@ const MenuPage = () => {
         <div id="total_carbs"class="linkCard2">
           Check console tab for total carb value and insulin injestment amount.
         </div>
-        <div className="content" dangerouslySetInnerHTML={{__html: saver}}></div>
+        <h3> Total number of carbs is: {carb}.</h3>
       </div>
   );
 };

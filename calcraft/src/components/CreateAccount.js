@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { getDatabase, ref, push } from 'firebase/database';
+import { getDatabase, ref, set } from 'firebase/database';
 
 const CreateAccount = () => {
   const [name, setName] = useState('');
@@ -15,33 +15,33 @@ const CreateAccount = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    const auth = getAuth();
-    const db = getDatabase();
+  const auth = getAuth();
+  const db = getDatabase();
 
-    try {
-      // Create user with email and password
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
+  try {
+    // Create user with email and password
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
 
-      // Push user details to the 'users' node
-      const usersRef = ref(db, 'users');
-      const newUserData = {
-        uid: user.uid, // Add user's UID to link authentication with user data
-        name,
-        age,
-        weight,
-        gender,
-        insulinRatio,
-        email,
-      };
-      push(usersRef, newUserData);
+    // Set user details under the 'users' node with UID as the key
+    const usersRef = ref(db, `users/${user.uid}`);
+    const newUserData = {
+      uid: user.uid, // Add user's UID to link authentication with user data
+      name,
+      age,
+      weight,
+      gender,
+      insulinRatio,
+      email,
+    };
+    await set(usersRef, newUserData); // Use set instead of push
 
-      // Redirect to a success page or any other page
-      navigate('/home');
-    } catch (error) {
-      console.error('Error creating user:', error);
-    }
-  };
+    // Redirect to a success page or any other page
+    navigate('/home');
+  } catch (error) {
+    console.error('Error creating user:', error);
+  }
+};
 
   return (
     <div>
