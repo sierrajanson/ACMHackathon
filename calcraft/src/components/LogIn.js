@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { auth, googleProvider } from '../firebase';
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-
+import NavBar from './navbar.jsx';
+import './Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -73,14 +74,14 @@ const Login = () => {
 
       <div>
         <h3>Email/Password Login:</h3>
-        <label>Email: </label>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <label for="email_css" class="form_label" >Email: </label>
+        <input id="email_css" class="form_field" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         <br />
-        <label>Password: </label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <label for="password_css" class="form_label">Password: </label>
+        <input id="password_css"class="form__field" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         <br />
-        <button onClick={handleSignIn}>Sign In</button>
-        <button onClick={handleCreateAccount}>Create Account</button>
+        <button class="buttonlog" onClick={handleSignIn}>Sign In</button>
+        <button class ="buttonlog" onClick={handleCreateAccount}>Create Account</button>
       </div>
 
       {/* Conditional rendering based on login status */}
@@ -88,13 +89,13 @@ const Login = () => {
         {loggedIn ? (
           <div>
             <p>User logged in</p>
-            <button onClick={handleSignOut}>Sign Out</button>
+            <button class="buttonlog" onClick={handleSignOut}>Sign Out</button>
           </div>
         ) : (
           <p>User not logged in</p>
         )}
       </div>
-      <button onClick={googleSignIn}>Sign In with Google</button>
+      <button class="buttonlog" onClick={googleSignIn}>Sign In with Google</button>
       
     </div>
   );

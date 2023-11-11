@@ -17,7 +17,7 @@ import LogoCalCraft from './LogoCalCraft.png';
 import { useState, useEffect } from 'react';
 import { signOut, getAuth, onAuthStateChanged } from 'firebase/auth';
 
-const pages = ['camera', 'menu'];
+const pages = ['home','camera', 'menu',];
 const settings = ['Account', 'Dashboard'];
 
 
@@ -67,7 +67,7 @@ function Navbar() {
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                <img src={LogoCalCraft} style={{ maxWidth: '75x', maxHeight: '75px' }}sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+                <img src={LogoCalCraft} style={{ maxWidth: '70px', maxHeight: '70px' }}sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                     <Typography
                         variant="h6"
                         noWrap
@@ -85,7 +85,7 @@ function Navbar() {
                             textDecoration: 'none',
                         }}
                     >
-                        HOME
+                        
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -152,7 +152,7 @@ function Navbar() {
                             textDecoration: 'none',
                         }}
                     >
-                        HOME
+                        
                     </Typography>
 
                     

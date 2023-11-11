@@ -9,12 +9,18 @@ import { collection, getDocs, getFirestore } from "firebase/firestore";
 import firebaseApp from '../firebase.js';
 import SearchBar from './searchBar.jsx';
 import './MenuPage.css';
+import { getDatabase, ref, get } from 'firebase/database';
 
 const MenuPage = () => {
   const [data, setData] = useState([]);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const authInstance = getAuth();
+  const db = getDatabase();
+  const [insulin_to_carbohydrate, setInsulinToCarbohydrate] = useState(15);
+
 
   useEffect(() => {
-    console.log('Fetching data...');
+    // console.log('Fetching data...');
 
     const fetchData = async () => {
       try {
@@ -22,24 +28,59 @@ const MenuPage = () => {
         const querySnapshot = await getDocs(db);
 
         const newData = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
+          id: doc.id, 
           ...doc.data(),
-        }));
-
-        console.log('Data fetched:', newData);
-        setData(newData);
+        }));  
+       
+        // console.log('Data fetched:', newData);
+        setData(newData[0]);
       } catch (error) {
         console.error('Error fetching data from Firestore:', error.message);
       }
     };
 
     fetchData();
-    console.log('Data fetched:', data[0]);
-  }, []); 
-  
-  
+  }, []);
 
-  let coffee_names = ['Crispy Bacon', 'Hardboiled Cage Free Egg', 'Natural Bridges Tofu Scramble', 'Organic Gluten Free Oatmeal', 'Shredded Hash Browns', 'Texas French Toast', 'Cage Free Scrambled Eggs', 'Steamed Rice', 'New England Clam Chowder', 'Vegan Tortilla Soup', 'Authentic Spanish Rice', 'Charro Beans', 'Chicken Enchilada Casserole', 'Corn Tortillas', 'Roasted Green Beansin Garlic Oil', 'Halal Chicken Patty', 'Hamburger Bun', 'Vegan Malibu Burger Patty', 'Cheese Pizza', 'Veggie Supreme Pizza', 'Allergen Free Halal Chicken Thigh', 'Steamed Rice', 'Tofuwith Kosher Salt', 'Vegan Oatmeal Raisin Cookie', 'LemonLoaf', 'Available Upon Request Gluten Free Rotini Pasta', 'Bar Pasta', 'Cheesy Garlic Bread Sticks', 'Condiments', 'Housemade Creamy Alfredo Sauce', 'Italian Roasted Squashand Carrots', 'Italian Roasted Tofu', 'Marinara Sauce'];
+  useEffect(() => {
+    const hasRedirected = localStorage.getItem('redirected');
+
+    if (hasRedirected) {
+      setLoggedIn(true);
+    }
+
+    const unsubscribe = onAuthStateChanged(authInstance, async (user) => {
+      if (user) {
+        const uid = user.uid;
+        console.log("User is signed in:", uid);
+        setLoggedIn(true);
+
+        // Fetch user data from Firebase Realtime Database
+        const userRef = ref(db, `users/${uid}`);
+        try {
+          const snapshot = await get(userRef);
+          if (snapshot.exists()) {
+            const userData = snapshot.val();
+            setInsulinToCarbohydrate(userData.insulinRatio);
+          } else {
+            console.log("User data not found");
+          }
+        } catch (error) {
+          console.error("Error fetching user data:", error.message);
+        }
+      } else {
+        console.log("User is not signed in");
+        setLoggedIn(false);
+      }
+    });
+    return () => unsubscribe();
+  }, [authInstance, db, loggedIn]);
+
+  console.log(insulin_to_carbohydrate);
+
+
+
+  let coffee_names = Object.keys(data).slice(1).sort();
   let carbs_array = [];
   let coffee_array = [];
   let cards = [];
@@ -48,13 +89,25 @@ const MenuPage = () => {
   let [carb_total, setCarb] = useState(0);
 
   for (let i = 0; i < coffee_names.length; i++) { // creating objects dynamically
-    coffee_array[i] = {
-      id: i,
-      name: coffee_names[i],
-      carbs: Math.floor(Math.random() * 300 + 3),
-      class: "grid-item",
-      border: "thick solid grey"
-    };
+    if (data[coffee_names[i]] !== null){
+      coffee_array[i] = {
+        id: i,
+        name: coffee_names[i],
+        carbs: data[coffee_names[i]],
+        class: "grid-item",
+        border: "thick solid grey"
+      };
+    }
+    else{
+      coffee_array[i] = {
+        id: i,
+        name: coffee_names[i],
+        carbs: 0,
+        class: "grid-item",
+        border: "thick solid grey"
+      };
+    }
+
   }
   const LinkCard = (props) => {
     return (
@@ -73,6 +126,7 @@ const MenuPage = () => {
         selected.push(props.title);
         { setCarb(carb_total += props.carbs) };
         //console.log(props.title, props.id);
+        console.log("You have selected " + props.title + " with " + data[props.title] + " carbs.");
         //console.log(carb_total);
         console.log("Insulin units to take is: " + (carb_total / 15).toFixed(2) + " if insulin to carbohydrate ratio is 15.")
       }
@@ -109,16 +163,6 @@ const MenuPage = () => {
       </div>
     );
   }
-  cards[1] = <LinkCard
-    className={"stinkCard"}
-    id={1}
-    title={coffee_array[1].name}
-    carbs={coffee_array[1].carbs}
-    height={50}
-    width={50} />
-
-  console.log(cards[1].props.title)
-  console.log(cards[1].props.className);
   return (
     <div class="linkCardMain">
       <h1>UCSC Dining Hall Menu Items</h1>
@@ -131,17 +175,16 @@ const MenuPage = () => {
 
       {/* End of Search Bar*/}
 
-
-      <div id="temp">
-        <LinkCardContainer
-          gridWidth={4}
-          card_list={cards}
-        />
+      <div class="menuContainerItems">
+        <div id="temp">
+          <LinkCardContainer
+            gridWidth={4}
+            card_list={cards}
+          />
+        </div>
       </div>
-      <div id="total_carbs" class="linkCard2">
-        Check console tab for total carb value and insulin injestment amount.
-      </div>
-      <h3> Total number of carbs is: {carb_total}.</h3>
+      <h3>Total number of carbs in food to eat is: {carb_total}.</h3>
+      <h3>Total number of units of insulin to injest: {(carb_total/insulin_to_carbohydrate).toFixed(2)}.</h3>
     </div>
   );
 };
