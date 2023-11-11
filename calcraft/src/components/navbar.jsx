@@ -13,6 +13,11 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import Divider from '@mui/material/Divider';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
 import { useNavigate } from 'react-router-dom';
 import LogoCalCraft from './LogoCalCraft.png';
 import { useState, useEffect } from 'react';
@@ -20,6 +25,7 @@ import { signOut, getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const pages = ['camera', 'menu'];
 const settings = ['Profile', 'Account', 'Dashboard'];
+
 
 function Navbar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -67,19 +73,20 @@ function Navbar() {
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                <img src={LogoCalCraft} style={{ maxWidth: '100x', maxHeight: '100px' }}sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+                <img src={LogoCalCraft} style={{ maxWidth: '75x', maxHeight: '75px' }}sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                     <Typography
                         variant="h6"
                         noWrap
                         component="a"
                         href="/home"
                         sx={{
-                            padding: '8px 16px',
+                            padding: '8px 16px 8px 36px',
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
                             fontFamily: 'monospace',
+                            fontSize: 14,
                             fontWeight: 700,
-                            letterSpacing: '.3rem',
+                            letterSpacing: '.15rem',
                             color: 'inherit',
                             textDecoration: 'none',
                         }}
@@ -123,12 +130,12 @@ function Navbar() {
                                 component={Link}
                                 to={`/${page}`}
                                 color="inherit"
-                                sx={{ my: 2, color: 'black', display: 'block' }}
+                                sx={{ my: 2, color: 'black', display: 'block', letterSpacing: '.3rem'}}
                             >
                                 {page}
                             </Button>
                         ))}
-                    </Box>
+                        </Box>
                         </Menu>
                     </Box>
                     

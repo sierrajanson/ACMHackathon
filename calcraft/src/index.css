@@ -14,18 +14,31 @@ code {
 
 .linkCard:hover{
   cursor: pointer;
-  background-color: rgb(254,44,84);
+  background-color: rgba(254,44,84);
 }
 
 .linkCard {
   display: flex;
+  text-align: center;
   background-color: #333;
-  justify-content: space-between;
-  border-radius: 0.5rem;
+  border-radius: 1.25rem;
   color: var(--text_color_1);
-  padding: 2rem;
-  width: 100%;
+  padding: 1.5rem;
+  width: 80%;
   overflow: none;
+  transition: background-color 0.1s;
+}
+
+.stinkCard {
+  display: flex;
+  text-align: center;
+  background-color: pink;
+  border-radius: 1.25rem;
+  color: var(--text_color_1);
+  padding: 1.5rem;
+  width: 80%;
+  overflow: none;
+  transition: background-color 0.1s;
 }
 
 .linkCard2 {
@@ -39,23 +52,6 @@ code {
   margin-top: 10px;
 }
 
-.linkCardselect {
-  display: flex;
-  background-color: #333;
-  justify-content: space-between;
-  border-radius: 0.5rem;
-  color: var(--text_color_1);
-  padding: 2rem;
-  width: 100%;
-  overflow: none;
-}
-
-.linkCard#comment {
-  border-style: double;
-  background-image: none;
-  background-color: var(--background_2);
-  border-color: var(--vicious_stance);
-}
 
 .linkCardHeader {
   font-weight: bold;
@@ -72,13 +68,21 @@ code {
 } */
 
 .linkCardContainer {
+  margin: auto;
+  width: 65%;
   overflow: none;
   -ms-overflow-style: none;
   scrollbar-width: none;
 
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 12px;
+  grid-template-columns: 1.5fr 1.5fr 1.5fr 1.5fr;
+  gap: 20px;
   justify-items: center;
   text-align: center;
 }
+
+.linkCardMain{
+  margin-top: 100px;
+  overflow-x: none;
+}
+

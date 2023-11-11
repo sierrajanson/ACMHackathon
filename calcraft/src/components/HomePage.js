@@ -17,10 +17,16 @@ import { useNavigate } from 'react-router-dom';
 import LogoCalCraft from './LogoCalCraft.png';
 // import logo from '/.logo.png';
 
+import me from '../assets/me.png'
+import ryan from '../assets/ryan.png'
+import rylee from '../assets/rylee.jpg'
+import sankritya from '../assets/sankritya.png'
+import './HomePage.css'
+
 const HomePage = () => {
   return (
-    <div>
-      <Typography
+    <div class="pageContent">
+      {/* <Typography
         variant="h4"
         noWrap
         component="a"
@@ -34,20 +40,17 @@ const HomePage = () => {
           color: 'inherit',
           textDecoration: 'none',
           fontSize: '50px',
-        }}
-      >
-        WHAT IS CAL CRAFT?</Typography>
-      {
-        <div>
-          <h3> Insulin Injestion Quantity Calculator. </h3>
-          <p>
-            Opt to either take a photo of the food you'll consume,<br></br>
-            or select through our friendly menu, and we'll output the <br></br>
-            number of insulin units you need <br></br>to return to a health blood glucose range!
-          </p>
-        </div>
-
-      }
+        }} 
+      >  
+        Insulin Injestion Quantity Calculator</Typography> */}
+      <h3> Insulin Injection Quantity Calculator </h3>
+      <div class="info"> 
+        <p>Opt either to take a photo of the food you will eat, or select from our friendly menu, and we'll tell you how many units of fast-acting insulin to injest!</p>
+      </div>
+      <h2> Our team </h2>
+      <div class="team">
+        <div><a href="https://www.linkedin.com/in/sankritya-rai-002a40261/"target="_blank"><img src={sankritya}></img></a>Sankritya Rai<br></br>ML • Backend</div><div><a href="https://www.linkedin.com/in/ryleebao/"target="_blank"><img src={rylee}></img></a>Rylee Bao<br></br>Backend</div><div><a href="https://www.linkedin.com/in/sierra-j-06175b216/"target="_blank"><img src={me}></img></a>Sierra Janson<br></br>Frontend</div><div><a href="https://www.linkedin.com/in/niryan/"target="_blank"><img src={ryan}></img></a>Ryan Ni<br></br>Frontend</div>
+      </div>
     </div>
   );
 };

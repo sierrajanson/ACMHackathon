@@ -33,7 +33,7 @@ function App() {
       </a>
       <script src="index.js"></script>
       </header>
-      <div className="nav-bar">
+      <div className="nav-bar" >
         <NavBar/>
       </div>
     </div>

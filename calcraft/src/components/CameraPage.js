@@ -68,7 +68,6 @@ const CameraPage = () => {
         } else {
           setDetectionMessage(`Item: ${className}`);
         }
-
         // Handle the API response as needed
       } catch (error) {
         console.error('API Request Error:', error);
