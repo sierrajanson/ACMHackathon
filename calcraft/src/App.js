@@ -6,6 +6,7 @@ import CameraPage from './components/CameraPage';
 import MenuPage from './components/MenuPage';
 import LogIn from './components/LogIn';
 import CreateAccount from './components/CreateAccount.js';
+import AccountDisplay from './components/AccountDisplay.js';
 import './App.css';
 import NavBar from './components/navbar.jsx';
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/menu" element={<MenuPage />} />
           <Route path="/signIn" element={<LogIn/>} />
           <Route path="/createAccount" element={<CreateAccount/>} />
+          <Route path="/account" element={<AccountDisplay/>} />
         </Routes> 
       <p>
       </p>

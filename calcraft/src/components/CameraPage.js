@@ -1,9 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 import axios from 'axios';
+import { set } from 'firebase/database';
 
 const CameraPage = () => {
   const fileInputRef = useRef(null);
-  const [capturedImage, setCapturedImage] = useState(null);
+  const [capturedImage, setCapturedImage] = useState(null); 
   const [detectionMessage, setDetectionMessage] = useState('');
 
   useEffect(() => {
@@ -16,11 +17,10 @@ const CameraPage = () => {
     document.body.appendChild(fileInputRef.current);
 
     return () => {
-      // Cleanup the event listener and remove the input element when the component is unmounted
       fileInputRef.current.removeEventListener('change', handleFileChange);
       document.body.removeChild(fileInputRef.current);
     };
-  }, []); // Empty dependency array ensures that this effect runs only once on mount
+  }, []); 
 
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
@@ -121,7 +121,7 @@ const CameraPage = () => {
           <label>
             Click here to select an image
             <br />
-            <button onClick={handleImageChange}>Select Image</button>
+            <button class="imageBtn" onClick={handleImageChange}>Select Image</button>
           </label>
         </>
       )}

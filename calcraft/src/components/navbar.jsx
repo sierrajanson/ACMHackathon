@@ -12,19 +12,13 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-import Divider from '@mui/material/Divider';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
 import { useNavigate } from 'react-router-dom';
 import LogoCalCraft from './LogoCalCraft.png';
 import { useState, useEffect } from 'react';
 import { signOut, getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const pages = ['camera', 'menu'];
-const settings = ['Profile', 'Account', 'Dashboard'];
+const settings = ['Account', 'Dashboard'];
 
 
 function Navbar() {
@@ -205,7 +199,9 @@ function Navbar() {
                         >   
                             {settings.map((setting) => (
                                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
+                                    <Link to={`/${setting.toLowerCase()}`} style={{ textDecoration: 'none' }}>
+                                        <Typography textAlign="center" color={"black"}>{setting}</Typography>
+                                    </Link>
                                 </MenuItem>))}
                             {user ? (
                                 <MenuItem key="logout" onClick={() => { handleSignOut() }}>
@@ -216,7 +212,6 @@ function Navbar() {
                                     <Typography textAlign="center">Login</Typography>
                                 </MenuItem>
                             )}
-                            {/* ... rest of your settings menu items */}
                         </Menu>
                     </Box>
 

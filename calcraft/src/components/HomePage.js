@@ -22,7 +22,6 @@ import ryan from '../assets/ryan.png'
 import rylee from '../assets/rylee.jpg'
 import sankritya from '../assets/sankritya.png'
 import './HomePage.css'
-
 const HomePage = () => {
   return (
     <div class="pageContent">
@@ -43,7 +42,8 @@ const HomePage = () => {
         }} 
       >  
         Insulin Injestion Quantity Calculator</Typography> */}
-      <h3> Insulin Injection Quantity Calculator </h3>
+      {/*Authored by Sierra J.*/}
+      <h3> Cal Craft </h3>
       <div class="info"> 
         <p>Opt either to take a photo of the food you will eat, or select from our friendly menu, and we'll tell you how many units of fast-acting insulin to injest!</p>
       </div>
