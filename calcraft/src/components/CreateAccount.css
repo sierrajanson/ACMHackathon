@@ -1,0 +1,232 @@
+
+h2{
+    font-family: monospace;
+    font-size: xx-large;
+    padding-top: 50px;
+
+}
+
+.buttonlog2 {
+  appearance: button;
+  background-color: #1899D6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: monospace;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  line-height: 0px;
+  position: relative;
+  margin: 10px;
+  outline: none;
+  overflow: visible;
+  padding: 20px auto;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  white-space: nowrap;
+  line-height: 20px;
+  width: 50%;
+}
+
+.buttonlog:after {
+  background-clip: padding-box;
+  background-color: #1CB0F6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  bottom: -4px;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.buttonlog {
+  user-select: auto;
+}
+
+.buttonlog:hover:not(:disabled) {
+  filter: brightness(1.1);
+  -webkit-filter: brightness(1.1);
+}
+
+.buttonlog:disabled {
+  cursor: auto;
+}
+
+.buttonlog:active {
+  border-width: 4px 0 0;
+  background: none;
+}
+
+
+.form_log{
+  
+  box-shadow: inset #abacaf 0 0 0 2px;
+  border: 0;
+  background: rgba(255, 255, 255, 0);
+  appearance: none;
+  width: 100%;
+  margin: 10px auto;
+  text-align: left;
+  position: relative;
+  width: 500px;
+  border-radius: 3px;
+  padding: 9px 12px;
+  line-height: 1.4;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  font-family: monospace;
+  font-weight: bold;
+  height: 40px;
+  transition: all .2s ease;
+  :hover{
+      box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 2px;
+  }
+  :focus{
+      background: #fff;
+      outline: 2;
+      box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 3px;
+  }
+
+  ::placeholder{
+    font-family: monospace;
+    font-weight: bold;
+    color: #FFFFFF;
+  }
+
+}
+.logged_in_status{
+  font-family: monospace;
+  font-weight: bold;
+  color: #FFFFFF;
+  font-size: medium;
+}
+.select-box {
+    position: relative;
+    display: block;
+    width: 200px;
+    text-align: center;
+    padding: 10px auto;
+    margin: 0 auto;
+    font-family:monospace;
+    font-size: 18px;
+    color: #1CB0F6;
+    background-color:transparent;
+    
+    @media (min-width: 768px) {
+      width: 70%;
+    }
+    
+    @media (min-width: 992px) {
+      width: 50%;
+    }
+    
+    @media (min-width: 1200px) {
+      width: 30%;
+    }
+    
+    &__current {
+      position: relative;
+      box-shadow: 0 15px 30px -10px transparentize(#000, 0.9);
+      cursor: pointer;
+      outline: none;
+      
+      &:focus {
+        & + .select-box__list {
+          opacity: 1;
+  
+  
+          animation-name: none;
+          
+          .select-box__option {
+            cursor: pointer;
+          }
+        }
+        
+        .select-box__icon {
+          transform: translateY(-50%) rotate(180deg);
+        }
+      }
+    }
+    
+    &__icon {
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+      width: 20px;
+      opacity: 0.3;
+      transition: 0.2s ease;
+    }
+    
+    &__value {
+      display: flex;
+    }
+    
+    &__input {
+      display: none;
+      
+      &:checked + .select-box__input-text {
+        display: block;
+      }
+    }
+    
+    &__input-text {
+      display: none;
+      width: 100%;
+      margin: 0;
+      padding: 15px;
+      color: #000;
+      background-color: grey;
+    }
+    
+    &__list {
+      position: absolute;
+      width: 100%;
+      padding: 0;
+      list-style: none;
+      opacity: 0;
+      
+      
+      animation-name: HideList;
+      animation-duration: 0.5s;
+      animation-delay: 0.5s;
+      animation-fill-mode: forwards;
+      animation-timing-function: step-start;
+      box-shadow: 0 15px 30px -10px transparentize(#000, 0.9);
+    }
+    
+    &__option {
+      display: block;
+      padding: 15px;
+      background-color: transparent;
+      
+      &:hover,
+      &:focus {
+        color: #546c84;
+        background-color: transparent;
+      }
+    }
+  }
+  
+  @keyframes HideList {
+    from {
+      transform: scaleY(1);
+    }
+    to {
+      transform: scaleY(0);
+    }
+  }

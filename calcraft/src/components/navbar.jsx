@@ -18,7 +18,7 @@ import { useState, useEffect } from 'react';
 import { signOut, getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const pages = ['home','camera', 'menu',];
-const settings = ['Account', 'Dashboard'];
+const settings = ['Account'];
 
 
 function Navbar() {
@@ -68,6 +68,7 @@ function Navbar() {
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                 <img src={LogoCalCraft} style={{ maxWidth: '70px', maxHeight: '70px' }}sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+                    {/*}
                     <Typography
                         variant="h6"
                         noWrap
@@ -87,7 +88,7 @@ function Navbar() {
                     >
                         
                     </Typography>
-
+                    */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"
@@ -136,6 +137,7 @@ function Navbar() {
                    
                     
                     <img src={LogoCalCraft} style={{ maxWidth: '0px', maxHeight: '0px' }}sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+                    {/*}
                     <Typography
                         variant="h5"
                         noWrap
@@ -154,7 +156,7 @@ function Navbar() {
                     >
                         
                     </Typography>
-
+                    */}
                     
 
                     {/* space in the middle of the page*/}
@@ -166,7 +168,8 @@ function Navbar() {
                                 component={Link}
                                 to={`/${page}`}
                                 color="inherit"
-                                sx={{ my: 2, color: 'white', display: 'block' }}
+                                sx={{ my: 2, color: 'white', display: 'block',fontFamily:'monospace',marginLeft:'15px',fontSize:"20px"}}
+                                
                             >
                                 {page}
                             </Button>
@@ -200,16 +203,16 @@ function Navbar() {
                             {settings.map((setting) => (
                                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                                     <Link to={`/${setting.toLowerCase()}`} style={{ textDecoration: 'none' }}>
-                                        <Typography textAlign="center" color={"black"}>{setting}</Typography>
+                                        <Typography fontFamily={"monospace"} textAlign="center" color={"black"}>{setting}</Typography>
                                     </Link>
                                 </MenuItem>))}
                             {user ? (
                                 <MenuItem key="logout" onClick={() => { handleSignOut() }}>
-                                    <Typography textAlign="center">Logout</Typography>
+                                    <Typography fontFamily={"monospace"} textAlign="center" color={"black"}>Logout</Typography>
                                 </MenuItem>
                             ) : (
                                 <MenuItem key="login" onClick={() => { navigate("/signIn") }}>
-                                    <Typography textAlign="center">Login</Typography>
+                                    <Typography fontFamily={"monospace"} textAlign="center" color={"black"}>Login</Typography>
                                 </MenuItem>
                             )}
                         </Menu>

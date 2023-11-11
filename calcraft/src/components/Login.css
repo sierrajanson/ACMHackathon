@@ -1,3 +1,4 @@
+
 h3{
     font-family: monospace;
     font-size: xx-large;
@@ -14,12 +15,12 @@ h3{
   color: #FFFFFF;
   cursor: pointer;
   display: inline-block;
-  font-family: din-round,sans-serif;
+  font-family: monospace;
   font-size: 15px;
   font-weight: 700;
   letter-spacing: .8px;
   line-height: 0px;
-  margin: 0;
+  margin: 10px;
   outline: none;
   overflow: visible;
   padding: 13px 16px;
@@ -69,62 +70,44 @@ h3{
 }
 
 
-.form__group {
-  position: relative;
-  padding: 15px 0 0;
-  margin-top: 10px;
-  width: 50%;
-}
-
-.form__field {
-  font-family: inherit;
-  width: 100%;
+.form_log{
+  
+  box-shadow: inset #abacaf 0 0 0 2px;
   border: 0;
-  border-bottom: 2px solid #9b9b9b;
-  outline: 0;
-  font-size: 1.3rem;
-  color: #fff;
-  padding: 7px 0;
-  background: transparent;
-  transition: border-color 0.2s;
-
-  &::placeholder {
-    color: transparent;
+  background: rgba(255, 255, 255, 0);
+  appearance: none;
+  width: 100%;
+  margin: 10px auto;
+  text-align: left;
+  position: relative;
+  border-radius: 3px;
+  padding: 9px 12px;
+  line-height: 1.4;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  font-family: monospace;
+  font-weight: bold;
+  height: 40px;
+  transition: all .2s ease;
+  :hover{
+      box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 2px;
+  }
+  :focus{
+      background: #fff;
+      outline: 2;
+      box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 3px;
   }
 
-  &:placeholder-shown ~ .form__label {
-    font-size: 1.3rem;
-    cursor: text;
-    top: 20px;
+  ::placeholder{
+    font-family: monospace;
+    font-weight: bold;
+    color: #FFFFFF;
   }
-}
 
-.form__label {
-  position: absolute;
-  top: 0;
-  display: block;
-  transition: 0.2s;
-  font-size: 1rem;
-  color: #9b9b9b;
 }
-
-.form__field:focus {
-  ~ .form__label {
-    position: absolute;
-    top: 0;
-    display: block;
-    transition: 0.2s;
-    font-size: 1rem;
-    color: #11998e;
-    font-weight:700;    
-  }
-  padding-bottom: 6px;  
-  font-weight: 700;
-  border-width: 3px;
-  border-image: linear-gradient(to right, #11998e,#0693E3);
-  border-image-slice: 1;
-}
-
-.form__field{
-  &:required,&:invalid { box-shadow:none; }
+.logged_in_status{
+  font-family: monospace;
+  font-weight: bold;
+  color: #FFFFFF;
+  font-size: medium;
 }

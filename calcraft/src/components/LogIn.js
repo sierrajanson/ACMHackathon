@@ -74,11 +74,9 @@ const Login = () => {
 
       <div>
         <h3>Email/Password Login:</h3>
-        <label for="email_css" class="form_label" >Email: </label>
-        <input id="email_css" class="form_field" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <input id="email_css" placeholder='Email' class="form_log"  type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         <br />
-        <label for="password_css" class="form_label">Password: </label>
-        <input id="password_css"class="form__field" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <input placeholder="Password" id="password_css" class="form_log"  type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         <br />
         <button class="buttonlog" onClick={handleSignIn}>Sign In</button>
         <button class ="buttonlog" onClick={handleCreateAccount}>Create Account</button>
@@ -88,11 +86,11 @@ const Login = () => {
       <div>
         {loggedIn ? (
           <div>
-            <p>User logged in</p>
+            <p class="logged_in_status">User logged in</p>
             <button class="buttonlog" onClick={handleSignOut}>Sign Out</button>
           </div>
         ) : (
-          <p>User not logged in</p>
+          <p class="logged_in_status">User not logged in</p>
         )}
       </div>
       <button class="buttonlog" onClick={googleSignIn}>Sign In with Google</button>

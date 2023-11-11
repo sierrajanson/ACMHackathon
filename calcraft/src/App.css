@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: monospace;
 }
 
 .App-logo {
@@ -19,6 +20,7 @@
   height: 10%;
   position: absolute;
   top: 0; 
+  font-family: monospace;
   z-index: 3;
   min-height: 20px;
 
@@ -47,7 +49,7 @@ nav li{
 
 li, a{
   text-decoration: none;
-  font-family: "Sigmar One";
+  font-family: monospace;
   color: white;
   font-size: 25px;
   margin-right: 20px;
@@ -62,6 +64,7 @@ li:nth-child(3){
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  font-family: monospace;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);

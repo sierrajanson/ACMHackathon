@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, handleChange} from 'react';
 import '../index.css';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
@@ -7,7 +7,8 @@ import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWith
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 import firebaseApp from '../firebase.js';
-import SearchBar from './searchBar.jsx';
+import SearchBar from './SearchBar.jsx';
+import SearchResultsList from './SearchResultsList.jsx';
 import './MenuPage.css';
 import { getDatabase, ref, get } from 'firebase/database';
 
@@ -32,7 +33,6 @@ const MenuPage = () => {
           ...doc.data(),
         }));  
        
-        // console.log('Data fetched:', newData);
         setData(newData[0]);
       } catch (error) {
         console.error('Error fetching data from Firestore:', error.message);
@@ -79,7 +79,7 @@ const MenuPage = () => {
   console.log(insulin_to_carbohydrate);
 
 
-
+  /*Below authored by Sierra J. */
   let coffee_names = Object.keys(data).slice(1).sort();
   let carbs_array = [];
   let coffee_array = [];
@@ -89,7 +89,7 @@ const MenuPage = () => {
   let [carb_total, setCarb] = useState(0);
 
   for (let i = 0; i < coffee_names.length; i++) { // creating objects dynamically
-    if (data[coffee_names[i]] !== null){
+    if (data[coffee_names[i]] >= 1) {
       coffee_array[i] = {
         id: i,
         name: coffee_names[i],
@@ -97,12 +97,12 @@ const MenuPage = () => {
         class: "grid-item",
         border: "thick solid grey"
       };
-    }
-    else{
+    } else {
+      // console.log("0 carbs found for " + coffee_names[i] + ". Setting to 5.");
       coffee_array[i] = {
         id: i,
         name: coffee_names[i],
-        carbs: 0,
+        carbs: 5,
         class: "grid-item",
         border: "thick solid grey"
       };
@@ -111,9 +111,9 @@ const MenuPage = () => {
   }
   const LinkCard = (props) => {
     return (
-      <div className='linkCard' id={props.id}>
+      <div onClick={myfunction(props)} className='linkCard' id={props.id}>
         <a style={linkCardStyles}>
-          <h3 onClick={myfunction(props)} className="linkCardHeader">{props.title}</h3>
+          <h3 className="linkCardHeader">{props.title}</h3>
           <p className="linkCardBody">{props.carbs} Carbs</p>
         </a>
       </div>
@@ -163,15 +163,18 @@ const MenuPage = () => {
       </div>
     );
   }
+
+  const [results, setResults] = useState([]);
+
   return (
     <div class="linkCardMain">
       <h1>UCSC Dining Hall Menu Items</h1>
       {/* Search Bar Goes here */}
       
-      {/* <div className="search-bar-container" >
-        <SearchBar/>
-        <div>SearchRestults</div>
-      </div> */}
+      <div className="search-bar-container" >
+        <SearchBar setResults = {setResults} />
+        <SearchResultsList results = {results} />
+      </div> 
 
       {/* End of Search Bar*/}
 
@@ -183,7 +186,7 @@ const MenuPage = () => {
           />
         </div>
       </div>
-      <h3>Total number of carbs in food to eat is: {carb_total}.</h3>
+      <h3>Total number of carbohydrate grams in food items selected is: {carb_total}.</h3>
       <h3>Total number of units of insulin to injest: {(carb_total/insulin_to_carbohydrate).toFixed(2)}.</h3>
     </div>
   );

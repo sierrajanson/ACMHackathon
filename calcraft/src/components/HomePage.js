@@ -24,32 +24,34 @@ import sankritya from '../assets/sankritya.png'
 import './HomePage.css'
 const HomePage = () => {
   return (
-    <div class="pageContent">
-      {/* <Typography
-        variant="h4"
-        noWrap
-        component="a"
-        href="/home"
-        sx={{
-          mr: 2,
-          display: { xs: 'none', md: 'flex' },
-          fontFamily: 'monospace',
-          fontWeight: 700,
-          letterSpacing: '.3rem',
-          color: 'inherit',
-          textDecoration: 'none',
-          fontSize: '50px',
-        }} 
-      >  
-        Insulin Injestion Quantity Calculator</Typography> */}
-      {/*Authored by Sierra J.*/}
-      <h3> Cal Craft </h3>
-      <div class="info"> 
-        <p>Opt either to take a photo of the food you will eat, or select from our friendly menu, and we'll tell you how many units of fast-acting insulin to injest!</p>
-      </div>
-      <h2> Our team </h2>
-      <div class="team">
-        <div><a href="https://www.linkedin.com/in/sankritya-rai-002a40261/"target="_blank"><img src={sankritya}></img></a>Sankritya Rai<br></br>ML • Backend</div><div><a href="https://www.linkedin.com/in/ryleebao/"target="_blank"><img src={rylee}></img></a>Rylee Bao<br></br>Backend</div><div><a href="https://www.linkedin.com/in/sierra-j-06175b216/"target="_blank"><img src={me}></img></a>Sierra Janson<br></br>Frontend</div><div><a href="https://www.linkedin.com/in/niryan/"target="_blank"><img src={ryan}></img></a>Ryan Ni<br></br>Frontend</div>
+    <div class="pageContent2">
+      <div class="pageContent">
+        {/* <Typography
+          variant="h4"
+          noWrap
+          component="a"
+          href="/home"
+          sx={{
+            mr: 2,
+            display: { xs: 'none', md: 'flex' },
+            fontFamily: 'monospace',
+            fontWeight: 700,
+            letterSpacing: '.3rem',
+            color: 'inherit',
+            textDecoration: 'none',
+            fontSize: '50px',
+          }} 
+        >  
+          Insulin Injestion Quantity Calculator</Typography> */}
+        {/*Authored by Sierra J.*/}
+        <h3> Cal Craft </h3>
+        <div class="info"> 
+          <p>Opt either to take a photo of the food you will eat, or select from our friendly menu, and we'll tell you how many units of fast-acting insulin to injest!</p>
+        </div>
+        <h2> Our team </h2>
+        <div class="team">
+          <div><a href="https://www.linkedin.com/in/sankritya-rai-002a40261/"target="_blank"><img src={sankritya}></img></a>Sankritya Rai<br></br>ML • Backend</div><div><a href="https://www.linkedin.com/in/ryleebao/"target="_blank"><img src={rylee}></img></a>Rylee Bao<br></br>Backend</div><div><a href="https://www.linkedin.com/in/sierra-j-06175b216/"target="_blank"><img src={me}></img></a>Sierra Janson<br></br>Frontend</div><div><a href="https://www.linkedin.com/in/niryan/"target="_blank"><img src={ryan}></img></a>Ryan Ni<br></br>Frontend</div>
+        </div>
       </div>
     </div>
   );

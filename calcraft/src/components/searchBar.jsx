@@ -2,6 +2,7 @@ import React, { useState, useEffect, handleChange } from "react";
 
 import { FaSearch } from "react-icons/fa";
 import "./SearchBar.css"
+import "./Login.css"
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
@@ -48,9 +49,9 @@ export const SearchBar = () => {
     
 
 
-return <div className="input-wrapper">
+return <div>
     <FaSearch id="search-icon" />
-    <input placeholder="Type to search..."
+    <input class="form_log" placeholder="Type to search..."
         value={input}
         onChange={(e) => handleChange(e.target.value)}
     />

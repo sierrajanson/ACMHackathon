@@ -1,5 +1,4 @@
 .search-bar-container {
-    padding-top: 20vh;
     width: 40%;
     margin: auto;
     display: flex;
@@ -9,5 +8,9 @@
 }
 
 .menuContainerItems {
-    height: 300px;
+    height: 450px;
+    overflow: auto;
+    overflow-x: hidden;
+    width: 100%;
+    margin:auto;
 }

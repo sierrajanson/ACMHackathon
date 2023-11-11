@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { getDatabase, ref, set } from 'firebase/database';
-
+import './CreateAccount.css'
 const CreateAccount = () => {
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
@@ -42,30 +42,25 @@ const CreateAccount = () => {
     console.error('Error creating user:', error);
   }
 };
-
   return (
     <div>
       <h2>Create Account</h2>
 
       <div>
-        <label>Name:</label>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+        <input placeholder='Name' class="form_log" type="text" value={name} onChange={(e) => setName(e.target.value)} />
       </div>
 
       <div>
-        <label>Age:</label>
-        <input type="number" value={age} onChange={(e) => setAge(e.target.value)} />
+        <input placeholder='Age' class="form_log" type="number" value={age} onChange={(e) => setAge(e.target.value)} />
       </div>
 
       <div>
-        <label>Weight:</label>
-        <input type="number" value={weight} onChange={(e) => setWeight(e.target.value)} />
+        <input placeholder='Weight' class="form_log" type="number" value={weight} onChange={(e) => setWeight(e.target.value)} />
       </div>
 
       <div>
-        <label>Gender:</label>
-        <select value={gender} onChange={(e) => setGender(e.target.value)}>
-          <option value="">Select</option>  
+        <select class="select-box" value={gender} onChange={(e) => setGender(e.target.value)}>
+          <option value="">Gender</option>  
           <option value="male">Male</option>
           <option value="female">Female</option>
           <option value="other">Other</option>
@@ -73,21 +68,18 @@ const CreateAccount = () => {
       </div>
 
       <div>
-        <label>Insulin-to-Carbohydrate Ratio:</label>
-        <input type="number" value={insulinRatio} onChange={(e) => setInsulinRatio(e.target.value)} />
+        <input placeholder='Insulin To Carbohydrate Ratio' class="form_log" type="number" value={insulinRatio} onChange={(e) => setInsulinRatio(e.target.value)} />
       </div>
 
       <div>
-        <label>Email:</label>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <input placeholder='Email' class="form_log" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
       </div>
 
       <div>
-        <label>Password:</label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <input placeholder='Password' class="form_log" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
       </div>
 
-      <button onClick={handleSubmit}>Submit</button>
+      <button class="buttonlog2" onClick={handleSubmit}>Submit</button>
     </div>
   );
 };
