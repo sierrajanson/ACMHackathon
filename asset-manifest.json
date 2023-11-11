@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ACMHackathon/static/css/main.dfb9bbd5.css",
-    "main.js": "/ACMHackathon/static/js/main.52cd7c47.js",
+    "main.js": "/ACMHackathon/static/js/main.8e1ed471.js",
     "static/js/787.2f585506.chunk.js": "/ACMHackathon/static/js/787.2f585506.chunk.js",
     "static/media/rylee.jpg": "/ACMHackathon/static/media/rylee.20a9b9849bcab5f0b724.jpg",
     "static/media/sankritya.png": "/ACMHackathon/static/media/sankritya.435e2126b871576e38f6.png",
@@ -10,11 +10,11 @@
     "static/media/LogoCalCraft.png": "/ACMHackathon/static/media/LogoCalCraft.a15113a72e0aff8d8cd5.png",
     "index.html": "/ACMHackathon/index.html",
     "main.dfb9bbd5.css.map": "/ACMHackathon/static/css/main.dfb9bbd5.css.map",
-    "main.52cd7c47.js.map": "/ACMHackathon/static/js/main.52cd7c47.js.map",
+    "main.8e1ed471.js.map": "/ACMHackathon/static/js/main.8e1ed471.js.map",
     "787.2f585506.chunk.js.map": "/ACMHackathon/static/js/787.2f585506.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.dfb9bbd5.css",
-    "static/js/main.52cd7c47.js"
+    "static/js/main.8e1ed471.js"
   ]
 }
