@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
+import { BrowserRouter as Route, Link} from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -15,14 +15,28 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
 import LogoCalCraft from './LogoCalCraft.png';
+import { useState, useEffect } from 'react';
+import { signOut, getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const pages = ['camera', 'menu'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Account', 'Dashboard'];
 
 function Navbar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const navigate = useNavigate();
+    const [user, setUser] = useState(null); // Use user instead of isLoggedIn
+    const auth = getAuth(); // Get the auth instance
+
+    useEffect(() => {
+        // Set up the Firebase auth state listener
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            setUser(user); // This will be null if the user is not logged in
+        });
+
+        // Clean up the listener when the component unmounts
+        return () => unsubscribe();
+    }, [auth]);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -40,6 +54,15 @@ function Navbar() {
         setAnchorElUser(null);
     };
 
+    const handleSignOut = async () => {
+        try {
+          localStorage.removeItem('redirected');
+          await signOut(auth);
+          console.log("User signed out");
+        } catch (error) {
+          console.error("Error signing out:", error);
+        }
+    };
     return (
         <AppBar position="static">
             <Container maxWidth="xl">
@@ -93,11 +116,19 @@ function Navbar() {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            {pages.map((page) => (
-                                <MenuItem onClick={() => navigate('/menu')} >
-                                    <Typography textAlign="center">{page}</Typography>
-                                </MenuItem>
-                            ))}
+                        <Box>
+                        {pages.map((page, index) => (
+                            <Button
+                                key={index}
+                                component={Link}
+                                to={`/${page}`}
+                                color="inherit"
+                                sx={{ my: 2, color: 'black', display: 'block' }}
+                            >
+                                {page}
+                            </Button>
+                        ))}
+                    </Box>
                         </Menu>
                     </Box>
                     
@@ -164,12 +195,21 @@ function Navbar() {
                             }}
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
-                        >
+                        >   
                             {settings.map((setting) => (
                                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                                     <Typography textAlign="center">{setting}</Typography>
+                                </MenuItem>))}
+                            {user ? (
+                                <MenuItem key="logout" onClick={() => { handleSignOut() }}>
+                                    <Typography textAlign="center">Logout</Typography>
                                 </MenuItem>
-                            ))}
+                            ) : (
+                                <MenuItem key="login" onClick={() => { navigate("/signIn") }}>
+                                    <Typography textAlign="center">Login</Typography>
+                                </MenuItem>
+                            )}
+                            {/* ... rest of your settings menu items */}
                         </Menu>
                     </Box>
 

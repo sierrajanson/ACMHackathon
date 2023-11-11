@@ -1,7 +1,7 @@
 import React from 'react';
 import '../index.css'
 const MenuPage = () => {
-  let coffee_names = ["rice","chicken","samosas","tortillas","cookies","pizza","burger","fries","cookies","pizza","burger","fries"];
+  let coffee_names = ['Crispy Bacon', 'Hardboiled Cage Free Egg', 'Natural Bridges Tofu Scramble', 'Organic Gluten Free Oatmeal', 'Shredded Hash Browns', 'Texas French Toast', 'Cage Free Scrambled Eggs', 'Steamed Rice', 'New England Clam Chowder', 'Vegan Tortilla Soup', 'Authentic Spanish Rice', 'Charro Beans', 'Chicken Enchilada Casserole', 'Corn Tortillas', 'Roasted Green Beansin Garlic Oil', 'Halal Chicken Patty', 'Hamburger Bun', 'Vegan Malibu Burger Patty', 'Cheese Pizza', 'Veggie Supreme Pizza', 'Allergen Free Halal Chicken Thigh', 'Steamed Rice', 'Tofuwith Kosher Salt', 'Vegan Oatmeal Raisin Cookie', 'LemonLoaf', 'Available Upon Request Gluten Free Rotini Pasta', 'Bar Pasta', 'Cheesy Garlic Bread Sticks', 'Condiments', 'Housemade Creamy Alfredo Sauce', 'Italian Roasted Squashand Carrots', 'Italian Roasted Tofu', 'Marinara Sauce'];
   let carbs_array = [];
   let coffee_array = [];
   const cards = [];
@@ -34,12 +34,13 @@ const MenuPage = () => {
         carb_total += props.carbs
         console.log(props.title, props.id);
         console.log(carb_total);
+        console.log("Insulin units to take is: "+ (carb_total/15).toFixed(2) + " if insulin to carbohydrate ratio is 15.")
         window.value = carb_total;
       }
       else {
         selected.splice(selected.indexOf(props.title));
         carb_total -= props.carbs;
-        console.log(carb_total);
+        console.log("Insulin units to take is: "+ (carb_total/15).toFixed(2) + " if insulin to carbohydrate ratio is 15.")
         window.value = carb_total;
       }
     }
@@ -50,9 +51,8 @@ const MenuPage = () => {
       id={i}
       title={coffee_array[i].name}
       carbs={coffee_array[i].carbs}
-      height={20}
-      width={20}
-      onClick = {myfunction}
+      height={50}
+      width={50}
     />);
   }
   console.log(cards);
@@ -91,7 +91,7 @@ const MenuPage = () => {
           </div>
         </div>
         <div id="total_carbs"class="linkCard2">
-          Check console tab for total carb value. 
+          Check console tab for total carb value and insulin injestment amount.
         </div>
       </div>
     </div>

@@ -37,7 +37,15 @@ const HomePage = () => {
         }}
       >
         WHAT IS CAL CRAFT?</Typography>
-      {/* Add your home page content here */
+      {
+        <div>
+          <h3> Insulin Injestion Quantity Calculator. </h3>
+          <p>
+            Opt to either take a photo of the food you'll consume,<br></br>
+            or select through our friendly menu, and we'll output the <br></br>
+            number of insulin units you need <br></br>to return to a health blood glucose range!
+          </p>
+        </div>
 
       }
     </div>
@@ -45,4 +53,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-

@@ -1,8 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
+import axios from 'axios';
 
 const CameraPage = () => {
   const fileInputRef = useRef(null);
   const [capturedImage, setCapturedImage] = useState(null);
+  const [detectionMessage, setDetectionMessage] = useState('');
 
   useEffect(() => {
     // Ensure that the ref is set correctly after the component is mounted
@@ -59,7 +61,14 @@ const CameraPage = () => {
       try {
         // Make the API request
         const response = await makeApiRequest(capturedImage);
-        console.log('API Response:', response);
+        const className = response.predictions[0]?.class;
+
+        if (className === undefined) {
+          setDetectionMessage('Unable to detect match');
+        } else {
+          setDetectionMessage(`Item: ${className}`);
+        }
+
         // Handle the API response as needed
       } catch (error) {
         console.error('API Request Error:', error);
@@ -70,33 +79,27 @@ const CameraPage = () => {
   };
 
   const makeApiRequest = async (base64String) => {
-    const apiUrl = 'http://100.64.57.88:9001/infer/object_detection';
+    const apiUrl = 'https://detect.roboflow.com/food_detector-qom4m/1';
+    const apiKey = 'BPnyauKuOtT3c149r2CB';
 
-    const response = await fetch(apiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model_id: 'food_detector-qom4m/1',
-        model_type: 'object-detection',
-        api_key: 'BPnyauKuOtT3c149r2CB',
-        image: [
-          {
-            type: 'base64',
-            value: base64String,
-          },
-        ],
-        confidence: 0.7,
-        mode: 'no-cors',
-      }),
-    });
+    try {
+      const response = await axios.post(apiUrl, base64String, {
+        params: {
+          api_key: apiKey,
+          confidence: 0.7,
+        },
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      });
 
-    if (!response.ok) {
-      throw new Error(`API request failed with status ${response.status}`);
+      console.log('API Response:', response.data);
+      // Handle the API response as needed
+      return response.data;
+    } catch (error) {
+      console.error('API Request Error:', error.message);
+      throw error;
     }
-
-    return response.json();
   };
 
   return (
@@ -112,6 +115,7 @@ const CameraPage = () => {
           <br />
           <button onClick={handleImageChange}>Change Image</button>
           <button onClick={handleApiSubmit}>Submit Image</button>
+          <p>{detectionMessage}</p>
         </>
       ) : (
         <>
