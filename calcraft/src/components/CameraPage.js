@@ -113,16 +113,12 @@ const CameraPage = () => {
           console.log(className);
           if (className === "rice"){setDetectionMessage(`Item: Jasmine Rice | 35 Carbs Insulin Units to Injest: ${(35/insulin_to_carbohydrate).toFixed(2)}`);}
           if (className === "cooked chicken"){setDetectionMessage(`Item: Halal Chicken | 5 Carbs\nInsulin Units to Injest: ${(5/insulin_to_carbohydrate).toFixed(2)}`);}
-          if (className === "samosas"){
-            setDetectionMessage(`Item: Potato Samosas | 25 Carbs\nInsulin Units to Injest: ${(5/insulin_to_carbohydrate).toFixed(2)}`);}
-          }
+          if (className === "samosas"){ setDetectionMessage(`Item: Potato Samosas | 25 Carbs\nInsulin Units to Injest: ${(5/insulin_to_carbohydrate).toFixed(2)}`);} }
           if (className === "tortillas"){setDetectionMessage(`Item: White Corn Tortillas | 15 Carbs\nInsulin Units to Injest: ${(5/insulin_to_carbohydrate).toFixed(2)}`);}
           if (className === "cookies"){setDetectionMessage(`Vegan Chocolate Chip Cookie | 16 Carbs\nInsulin Units to Injest: ${(16/insulin_to_carbohydrate).toFixed(2)}`);}
           if (className === "pizza"){setDetectionMessage(`Cheese Pizza | 35 Carbs\nInsulin Units to Injest: ${(35/insulin_to_carbohydrate).toFixed(2)}`);}
-          else {
-            setDetectionMessage(`Rodeo Burger | 40 Carbs\nInsulin Units to Injest: ${(40/insulin_to_carbohydrate).toFixed(2)}`);
-          }
-          
+          if (className == "burger"){setDetectionMessage(`Rodeo Burger | 40 Carbs\nInsulin Units to Injest: ${(40/insulin_to_carbohydrate).toFixed(2)}`);}
+          if (className = "fries"){setDetectionMessage(`French Fries | 30 Carbs\nInsulin Units to Injest: ${(30/insulin_to_carbohydrate).toFixed(2)}`);}
         // Handle the API response as needed
       } catch (error) {
         console.error('API Request Error:', error);

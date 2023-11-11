@@ -13,7 +13,7 @@
     outline: none;
 }
 
-input2 {
+input4 {
     background-color: transparent;
     border: none;
     height: 100%;
@@ -23,11 +23,12 @@ input2 {
     outline: none;
 }
 
-input2:focus {
+input4:focus {
     align-items: center;
     outline: none;
 }
 
 #search-icon {
     color: grey;
+    margin-right:25px ;
 }

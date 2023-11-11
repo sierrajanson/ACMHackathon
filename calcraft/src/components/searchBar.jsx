@@ -49,11 +49,11 @@ export const SearchBar = () => {
     
 
 
-return <div>
+return <div >
     <FaSearch id="search-icon" />
     <input class="form_log" placeholder="Type to search..."
         value={input}
-        onChange={(e) => handleChange(e.target.value)}
+        // onChange={(e) => handleChange(e.target.value)}
     />
 </div>
 
