@@ -1,5 +1,9 @@
 # ACMHackathon
+<<<<<<< HEAD
 ## CalCraft is an AI-driven Insulin Dosage Calculator
+=======
+### CalCraft is a insulin calculator
+>>>>>>> 587d0d4137c36a5e3e94eb1e742668d94dca43ce
 ![image](https://github.com/sierrajanson/ACMHackathon/blob/main/LogoCalCraft.png)
 
 ## Inspiration
